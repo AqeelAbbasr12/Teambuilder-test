@@ -6,6 +6,13 @@ import { urlFor } from "../../lib/client";
 import { UC } from "../context";
 import { Minus, Plus, Star } from "../../comps/Svg";
 
+const formatJPY = (value) => {
+  return new Intl.NumberFormat("ja-JP", {
+    style: "currency",
+    currency: "JPY",
+  }).format(value);
+};
+
 const Show = ({ product, products }) => {
   console.log("show");
   const { incQty, decQty, qty, onAdd } = useContext(UC);
@@ -101,7 +108,10 @@ const Show = ({ product, products }) => {
               <div className=" text-secondary font-medium ">DETAILS:</div>
               <p className="w-2/3 text-lightGray"> {product.details}</p>
 
-              <div className=" my-4 text-2xl font-bold"> ${product.price} </div>
+              <div className=" my-4 text-2xl font-bold">
+                {" "}
+                {formatJPY(product.price)}{" "}
+              </div>
 
               {/* ==== QUANTITY SHOW  */}
               <div className="flex">
